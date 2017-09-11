@@ -9,7 +9,6 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -27,8 +26,9 @@ public class CustomSearchBar extends FrameLayout {
     LinearLayout mSearchLayout;
     TextView mSearchHint;
     FrameLayout mSearchFrame;
-    private View displayView;
-    private SearchBarWatcher mSearchBarWatcher;
+
+    TextWatcher mTextWatcher;
+    TextView.OnEditorActionListener mEditorActionListener;
 
     Context mContext;
     private final String mActivity = this.getClass().getSimpleName();
@@ -76,38 +76,41 @@ public class CustomSearchBar extends FrameLayout {
         mSearchFrame = searchView.findViewById(R.id.search_frame);
         addView(searchView);
 
-        mSearchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        if (mTextWatcher == null)
+        {
+            mTextWatcher = new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String s = textView.getText().toString();
-//                    mSearchBarWatcher._onTextChanged(s);
                 }
-                return true;
-            }
-        });
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            };
+        }
+        mSearchEditText.addTextChangedListener(mTextWatcher);
+        if (mEditorActionListener == null)
+        {
+            mEditorActionListener = new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                    return false;
+                }
+            };
+        }
+        mSearchEditText.setOnEditorActionListener(mEditorActionListener);
         mSearchEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 mSearchFrame.setVisibility(hasFocus ? GONE : VISIBLE);
                 mSearchLayout.setVisibility(hasFocus ? VISIBLE : GONE);
-                if (displayView != null) displayView.setVisibility(hasFocus ? VISIBLE : GONE);
             }
         });
         mBtnCancel.setOnClickListener(new OnClickListener() {
@@ -140,14 +143,16 @@ public class CustomSearchBar extends FrameLayout {
         mBtnCancel.setTextColor(mCancelTextColor);
     }
 
-    public abstract static class SearchBarWatcher {
-        protected abstract void _onTextChanged(String s);
+    public void SetTextWatcher(TextWatcher textWatcher)
+    {
+        mTextWatcher = textWatcher;
+        init(mContext);
     }
 
-    public void init(View displayView, SearchBarWatcher mSearchBarWatcher) {
-        this.displayView = displayView;
-        if (displayView != null) displayView.setVisibility(GONE);
-        this.mSearchBarWatcher = mSearchBarWatcher;
+    public void SetEditorActionListener(TextView.OnEditorActionListener editorActionListener)
+    {
+        mEditorActionListener = editorActionListener;
+        init(mContext);
     }
 
     //Input helpers
