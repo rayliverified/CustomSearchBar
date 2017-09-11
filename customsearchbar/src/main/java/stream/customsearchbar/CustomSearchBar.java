@@ -155,6 +155,11 @@ public class CustomSearchBar extends FrameLayout {
         init(mContext);
     }
 
+    public String GetText()
+    {
+        return mSearchEditText.getText().toString();
+    }
+
     //Input helpers
     public void showSoftInput(EditText edit) {
         edit.setFocusable(true);
