@@ -71,7 +71,7 @@ public class CustomSearchBar extends FrameLayout {
 
         FrameLayout searchView = (FrameLayout) LayoutInflater.from(context).inflate(R.layout.searchview, null);
         mSearchEditText = searchView.findViewById(R.id.search_edittext);
-        mBtnCancel = searchView.findViewById(R.id.tv_cancel);
+        mBtnCancel = searchView.findViewById(R.id.btn_cancel);
         mSearchLayout = searchView.findViewById(R.id.search_layout);
         mSearchHint = searchView.findViewById(R.id.search_hint);
         mSearchFrame = searchView.findViewById(R.id.search_frame);

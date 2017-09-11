@@ -32,10 +32,11 @@
             android:maxLines="1"
             android:background="#FFFFFF"
             android:drawableLeft="@drawable/icon_search_fit"
+            android:textCursorDrawable="@null"
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tv_cancel"
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
