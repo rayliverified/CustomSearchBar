@@ -6,11 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import stream.customsearchbar.CustomSearchBar;
 
@@ -44,13 +41,10 @@ public class MainActivity extends AppCompatActivity{
                 Log.d("Text", editable.toString());
             }
         });
-        mSearchBar.SetEditorActionListener(new TextView.OnEditorActionListener() {
+        mSearchBar.setEditorActionInterface(new CustomSearchBar.EditorActionInterface() {
             @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Log.d("Search", textView.getText().toString());
-                }
-                return false;
+            public void onEditorActionEnter(String text) {
+                Log.d("EnterText", text);
             }
         });
 

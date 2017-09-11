@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -26,12 +27,12 @@ public class CustomSearchBar extends FrameLayout {
     LinearLayout mSearchLayout;
     TextView mSearchHint;
     FrameLayout mSearchFrame;
-
     TextWatcher mTextWatcher;
-    TextView.OnEditorActionListener mEditorActionListener;
 
     Context mContext;
     private final String mActivity = this.getClass().getSimpleName();
+
+    EditorActionInterface mEditorActionInterface;
 
     public CustomSearchBar(Context context) {
         this(context, null, 0, 0);
@@ -96,16 +97,18 @@ public class CustomSearchBar extends FrameLayout {
             };
         }
         mSearchEditText.addTextChangedListener(mTextWatcher);
-        if (mEditorActionListener == null)
-        {
-            mEditorActionListener = new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    return false;
+        mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    mEditorActionInterface.onEditorActionEnter(textView.getText().toString());
+                    mSearchHint.setText(textView.getText().toString());
+                    hideSoftInput(mSearchEditText);
+                    mSearchEditText.clearFocus();
                 }
-            };
-        }
-        mSearchEditText.setOnEditorActionListener(mEditorActionListener);
+                return false;
+            }
+        });
         mSearchEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -116,7 +119,10 @@ public class CustomSearchBar extends FrameLayout {
         mBtnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Clear search box.
                 mSearchEditText.setText("");
+                //Reset search hint text.
+                mSearchHint.setText(mHintText);
                 hideSoftInput(mSearchEditText);
                 mSearchEditText.clearFocus();
             }
@@ -149,15 +155,18 @@ public class CustomSearchBar extends FrameLayout {
         init(mContext);
     }
 
-    public void SetEditorActionListener(TextView.OnEditorActionListener editorActionListener)
-    {
-        mEditorActionListener = editorActionListener;
-        init(mContext);
-    }
-
     public String GetText()
     {
         return mSearchEditText.getText().toString();
+    }
+
+    public interface EditorActionInterface
+    {
+        void onEditorActionEnter(String text);
+    }
+
+    public void setEditorActionInterface(EditorActionInterface editorActionInterface) {
+        this.mEditorActionInterface = editorActionInterface;
     }
 
     //Input helpers
