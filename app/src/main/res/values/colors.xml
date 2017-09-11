@@ -7,6 +7,14 @@
 
     <!-- Basic Colors -->
     <color name="white">#FFFFFF</color>
-    <color name="white_pressed">#c8ffffff</color>
-    <color name="transparent">#00FFFFFF</color>
+
+    <!-- Toolbar Colors -->
+    <color name="toolbarBG">#F9F9F9</color>
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#2D2D2D</color>
+
+    <!-- Button Colors -->
+    <color name="button_pressed">#008af9</color>
+    <color name="button_selected">#4dafff</color>
 </resources>

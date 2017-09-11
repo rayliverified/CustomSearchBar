@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="@color/toolbarBG"
+    android:elevation="2dp">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="49dp"
+        android:layout_height="35dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icon_back_selector"
+        android:scaleType="fitXY"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_toLeftOf="@+id/btn_more"
+        android:layout_toRightOf="@+id/btn_back"
+        android:text="Custom Search Bar"
+        android:textSize="20sp"
+        android:textColor="@color/textPrimary"
+        android:fontFamily="sans-serif-medium"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <ImageButton
+        android:id="@+id/btn_more"
+        android:layout_width="49dp"
+        android:layout_height="35dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icon_filter_selector"
+        android:scaleType="fitXY"
+        android:background="@android:color/transparent"/>
+</RelativeLayout>
