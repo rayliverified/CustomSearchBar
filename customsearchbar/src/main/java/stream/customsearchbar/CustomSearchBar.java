@@ -96,6 +96,8 @@ public class CustomSearchBar extends FrameLayout {
                     //Detect enter key presses
                     if (s.subSequence(start, start + 1).toString().equalsIgnoreCase("\n")) {
                         mEditorActionInterface.onEditorActionEnter(mSearchEditText.getText().toString());
+                        mSearchEditText.setText(mSearchEditText.getText().toString().replace("\n", ""));
+                        mSearchEditText.setSelection(mSearchEditText.getText().length());
                         mSearchHint.setText(mSearchEditText.getText().toString());
                         hideSoftInput(mSearchEditText);
                         mSearchEditText.clearFocus();
@@ -120,7 +122,7 @@ public class CustomSearchBar extends FrameLayout {
         mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_FLAG_NO_ENTER_ACTION) {
                     mEditorActionInterface.onEditorActionEnter(textView.getText().toString());
                     mSearchHint.setText(textView.getText().toString());
                     hideSoftInput(mSearchEditText);
@@ -203,6 +205,24 @@ public class CustomSearchBar extends FrameLayout {
 
     public void setEditorActionInterface(EditorActionInterface editorActionInterface) {
         this.mEditorActionInterface = editorActionInterface;
+    }
+
+    public boolean HasFocus()
+    {
+        if (mSearchEditText.hasFocus())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void ClearFocus()
+    {
+        hideSoftInput(mSearchEditText);
+        mSearchEditText.clearFocus();
     }
 
     //Input helpers

@@ -57,4 +57,15 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mSearchBar.HasFocus())
+        {
+            mSearchBar.ClearFocus();
+            return;
+        }
+
+        super.onBackPressed();
+    }
 }

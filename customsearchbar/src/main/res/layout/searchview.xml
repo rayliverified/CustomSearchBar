@@ -28,8 +28,6 @@
             android:hint="Search"
             android:textColorHint="#8e8e8e"
             android:imeOptions="actionSearch"
-            android:singleLine="true"
-            android:maxLines="1"
             android:background="#FFFFFF"
             android:drawableLeft="@drawable/icon_search_fit"
             android:textCursorDrawable="@null"
