@@ -25,22 +25,23 @@ public class MainActivity extends AppCompatActivity{
         mContext = getApplicationContext();
 
         mSearchBar = findViewById(R.id.search_bar);
-        mSearchBar.SetTextWatcher(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                Log.d("Text", editable.toString());
-            }
-        });
+        //Override default TextWatcher with custom code.
+//        mSearchBar.SetTextWatcher(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                Log.d("Text", editable.toString());
+//            }
+//        });
         mSearchBar.setEditorActionInterface(new CustomSearchBar.EditorActionInterface() {
             @Override
             public void onEditorActionEnter(String text) {
