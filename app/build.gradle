@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "stream.customsearchbarapp"
         minSdkVersion 15
@@ -24,9 +24,9 @@ dependencies {
         maven { url 'https://jitpack.io' }
         maven { url "https://maven.google.com" }
     }
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':customsearchbar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':customsearchbar')
 
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.0'
 }
