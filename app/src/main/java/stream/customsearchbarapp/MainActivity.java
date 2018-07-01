@@ -2,13 +2,14 @@ package stream.customsearchbarapp;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import stream.customsearchbar.CustomSearchBar;
 
 public class MainActivity extends AppCompatActivity{
@@ -17,6 +18,10 @@ public class MainActivity extends AppCompatActivity{
     ImageButton mBtnFilter;
 
     Context mContext;
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
