@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomSearchBar">
-        <attr name="search_frame_background" format="color" />
-        <attr name="search_hint_text" format="string" />
-        <attr name="search_hint_size" format="dimension" />
-        <attr name="search_hint_color" format="color" />
-        <attr name="search_text_size" format="dimension" />
-        <attr name="search_text_color" format="color" />
-        <attr name="search_cancel_text" format="string" />
-        <attr name="search_cancel_size" format="dimension" />
-        <attr name="search_cancel_color" format="color" />
+        <attr name="search_frame_background" format="color"/>
+        <attr name="search_hint_text" format="string"/>
+        <attr name="search_hint_size" format="dimension"/>
+        <attr name="search_hint_color" format="color"/>
+        <attr name="search_text_size" format="dimension"/>
+        <attr name="search_text_color" format="color"/>
+        <attr name="search_cancel_text" format="string"/>
+        <attr name="search_cancel_size" format="dimension"/>
+        <attr name="search_cancel_color" format="color"/>
     </declare-styleable>
 </resources>

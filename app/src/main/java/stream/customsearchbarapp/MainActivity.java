@@ -2,26 +2,23 @@ package stream.customsearchbarapp;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import stream.customsearchbar.CustomSearchBar;
 
-public class MainActivity extends AppCompatActivity{
-
-    CustomSearchBar mSearchBar;
-    ImageButton mBtnFilter;
-
-    Context mContext;
+public class MainActivity extends AppCompatActivity {
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
+
+    CustomSearchBar mSearchBar;
+    ImageButton mBtnFilter;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

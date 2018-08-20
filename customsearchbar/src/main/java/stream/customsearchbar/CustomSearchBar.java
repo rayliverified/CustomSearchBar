@@ -18,20 +18,17 @@ import android.widget.TextView;
 
 public class CustomSearchBar extends FrameLayout {
 
+    private final String mActivity = this.getClass().getSimpleName();
     String mHintText, mCancelText;
     float mTextSize, mHintSize, mCancelTextSize;
     int mSearchFrameBackground, mSearchBoxBackground, mTextColor, mHintColor, mCancelTextColor;
-
     CustomEditText mSearchEditText;
     TextView mBtnCancel;
     LinearLayout mSearchLayout;
     TextView mSearchHint;
     FrameLayout mSearchFrame;
     TextWatcher mTextWatcher;
-
     Context mContext;
-    private final String mActivity = this.getClass().getSimpleName();
-
     EditorActionInterface mEditorActionInterface;
 
     public CustomSearchBar(Context context) {
@@ -65,8 +62,7 @@ public class CustomSearchBar extends FrameLayout {
         init(context);
     }
 
-    private void init(Context context)
-    {
+    private void init(Context context) {
         mContext = context;
 
         FrameLayout searchView = (FrameLayout) LayoutInflater.from(context).inflate(R.layout.searchview, null);
@@ -77,8 +73,7 @@ public class CustomSearchBar extends FrameLayout {
         mSearchFrame = searchView.findViewById(R.id.search_frame);
         addView(searchView);
 
-        if (mTextWatcher == null)
-        {
+        if (mTextWatcher == null) {
             mTextWatcher = new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -106,12 +101,9 @@ public class CustomSearchBar extends FrameLayout {
                 @Override
                 public void afterTextChanged(Editable editable) {
                     //Set cancel button text to Clear if there is text.
-                    if (editable.toString().length() > 0)
-                    {
+                    if (editable.toString().length() > 0) {
                         mBtnCancel.setText("Clear");
-                    }
-                    else
-                    {
+                    } else {
                         mBtnCancel.setText("Cancel");
                     }
                 }
@@ -133,12 +125,9 @@ public class CustomSearchBar extends FrameLayout {
         mSearchEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                if (mSearchEditText.getText().toString().length() > 0)
-                {
+                if (mSearchEditText.getText().toString().length() > 0) {
                     mSearchHint.setText(mSearchEditText.getText().toString());
-                }
-                else
-                {
+                } else {
                     mSearchHint.setText(mHintText);
                 }
                 mSearchFrame.setVisibility(hasFocus ? GONE : VISIBLE);
@@ -149,14 +138,11 @@ public class CustomSearchBar extends FrameLayout {
             @Override
             public void onClick(View view) {
                 //If search bar has text, clear text first.
-                if (mSearchEditText.length() > 0)
-                {
+                if (mSearchEditText.length() > 0) {
                     //Clear text and set button text to Cancel.
                     mSearchEditText.setText("");
                     mBtnCancel.setText("Cancel");
-                }
-                else
-                {
+                } else {
                     //Reset search hint text.
                     mSearchHint.setText(mHintText);
                     hideSoftInput(mSearchEditText);
@@ -186,40 +172,24 @@ public class CustomSearchBar extends FrameLayout {
         mBtnCancel.setTextColor(mCancelTextColor);
     }
 
-    public void SetTextWatcher(TextWatcher textWatcher)
-    {
+    public void SetTextWatcher(TextWatcher textWatcher) {
         mTextWatcher = textWatcher;
         init(mContext);
     }
 
-    public String GetText()
-    {
+    public String GetText() {
         return mSearchEditText.getText().toString();
-    }
-
-    public interface EditorActionInterface
-    {
-        void onEditorActionEnter(String text);
     }
 
     public void setEditorActionInterface(EditorActionInterface editorActionInterface) {
         this.mEditorActionInterface = editorActionInterface;
     }
 
-    public boolean HasFocus()
-    {
-        if (mSearchEditText.hasFocus())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    public boolean HasFocus() {
+        return mSearchEditText.hasFocus();
     }
 
-    public void ClearFocus()
-    {
+    public void ClearFocus() {
         hideSoftInput(mSearchEditText);
         mSearchEditText.clearFocus();
     }
@@ -238,5 +208,9 @@ public class CustomSearchBar extends FrameLayout {
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) return;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public interface EditorActionInterface {
+        void onEditorActionEnter(String text);
     }
 }
