@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ public class CustomSearchBar extends FrameLayout {
     float mTextSize, mHintSize, mCancelTextSize;
     int mSearchFrameBackground, mSearchBoxBackground, mTextColor, mHintColor, mCancelTextColor;
 
-    EditText mSearchEditText;
+    CustomEditText mSearchEditText;
     TextView mBtnCancel;
     LinearLayout mSearchLayout;
     TextView mSearchHint;

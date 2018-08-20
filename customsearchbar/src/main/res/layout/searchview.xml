@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:paddingTop="10dp"
-             android:paddingBottom="10dp"
-             android:paddingLeft="12dp"
-             android:paddingRight="12dp"
-             android:background="#c9c9c9"
-             android:clickable="true"
-             android:focusable="true"
-             android:focusableInTouchMode="true">
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="12dp"
+                   android:paddingRight="12dp"
+                   android:background="#c9c9c9"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:focusableInTouchMode="true">
 
     <LinearLayout
         android:id="@+id/search_layout"
@@ -18,7 +18,7 @@
         android:background="@drawable/bg_roundrect_white"
         android:orientation="horizontal">
 
-        <EditText
+        <stream.customsearchbar.CustomEditText
             android:id="@+id/search_edittext"
             android:layout_width="0dp"
             android:layout_height="match_parent"
